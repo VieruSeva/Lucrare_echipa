@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather in Moldova</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Weather in Moldova</h1>
+    <p>Explore the seasonal weather patterns of this beautiful Eastern European country</p>
+  </header>
+
+  <main>
+    <section class="seasons">
+      <h2>Seasons in Moldova</h2>
+
+      <div class="season-card" id="spring">
+        <h3>Spring</h3>
+        <img src="images/moldova-spring.jpg" alt="Spring in Moldova">
+        <p>Spring in Moldova (March-May) brings mild temperatures between 10-20°C and colorful blooming landscapes.</p>
+      </div>
+
+      <div class="season-card" id="summer">
+        <h3>Summer</h3>
+        <img src="images/moldova-summer.jpg" alt="Summer in Moldova">
+        <p>Summer (June-August) is warm and sunny with temperatures ranging from 25-30°C, perfect for exploring vineyards.</p>
+      </div>
+
+      <div class="season-card" id="autumn">
+        <h3>Autumn</h3>
+        <img src="images/moldova-autumn.jpg" alt="Autumn in Moldova">
+        <p>Autumn (September-November) features colorful foliage and temperatures between 10-20°C, ideal for harvest season.</p>
+      </div>
+
+      <div class="season-card" id="winter">
+        <h3>Winter</h3>
+        <img src="images/moldova-winter.jpg" alt="Winter in Moldova">
+        <p>Winter (December-February) brings snow and cold with temperatures ranging from -5 to 5°C.</p>
+      </div>
+    </section>
+
+    <section class="weather-info">
+      <h2>Current Weather</h2>
+      <div id="weather-display">
+        <p>Select a city to see current weather information</p>
+        <select id="city-select">
+          <option value="chisinau">Chisinau</option>
+          <option value="balti">Balti</option>
+          <option value="tiraspol">Tiraspol</option>
+          <option value="cahul">Cahul</option>
+        </select>
+        <div id="weather-result"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Weather in Moldova | Simple Weather Guide</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

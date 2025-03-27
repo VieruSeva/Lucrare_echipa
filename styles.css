@@ -1,0 +1,155 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #f0f5ff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+  background: linear-gradient(135deg, #0057b8 0%, #ffd700 100%);
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+header p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Main Content */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #0057b8;
+  border-bottom: 2px solid #ffd700;
+  padding-bottom: 0.5rem;
+}
+
+/* Seasons Section */
+.seasons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.season-card {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.season-card:hover {
+  transform: translateY(-10px);
+}
+
+.season-card h3 {
+  padding: 1rem;
+  text-align: center;
+  background-color: #0057b8;
+  color: white;
+}
+
+.season-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.season-card p {
+  padding: 1rem;
+  font-size: 0.95rem;
+}
+
+/* Weather Info Section */
+.weather-info {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#weather-display {
+  text-align: center;
+}
+
+#city-select {
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid #0057b8;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#weather-result {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  min-height: 100px;
+}
+
+/* Footer Styles */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #0057b8;
+  color: white;
+  margin-top: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .seasons {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Season-specific styles */
+#spring h3 {
+  background-color: #88c425;
+}
+
+#summer h3 {
+  background-color: #ff9505;
+}
+
+#autumn h3 {
+  background-color: #bd4f19;
+}
+
+#winter h3 {
+  background-color: #4a7c9b;
+}
