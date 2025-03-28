@@ -1,4 +1,4 @@
-// Weather data simulation for Moldova cities
+
 const weatherData = {
   chisinau: {
     spring: { temp: '15°C', conditions: 'Partly Cloudy', icon: '🌤️' },
@@ -26,7 +26,7 @@ const weatherData = {
   }
 };
 
-// Get current season
+
 function getCurrentSeason() {
   const month = new Date().getMonth();
   if (month >= 2 && month <= 4) return 'spring';
@@ -35,21 +35,21 @@ function getCurrentSeason() {
   return 'winter';
 }
 
-// Handle city selection
-document.addEventListener('DOMContentLoaded', function() {
+
+document.addEventListener('DOMContentLoaded', function () {
   const citySelect = document.getElementById('city-select');
   const weatherResult = document.getElementById('weather-result');
   const currentSeason = getCurrentSeason();
 
-  // Highlight the current season
+
   const currentSeasonCard = document.getElementById(currentSeason);
   if (currentSeasonCard) {
     currentSeasonCard.style.transform = 'scale(1.05)';
-    currentSeasonCard.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)';
+    currentSeasonCard.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.15)';
   }
 
-  // Display weather on city selection
-  citySelect.addEventListener('change', function() {
+
+  citySelect.addEventListener('change', function () {
     const selectedCity = this.value;
     const cityWeather = weatherData[selectedCity][currentSeason];
 
@@ -62,28 +62,27 @@ document.addEventListener('DOMContentLoaded', function() {
         <p>Season: ${currentSeason.charAt(0).toUpperCase() + currentSeason.slice(1)}</p>
       </div>
     `;
-
-    weatherResult.style.backgroundColor = '#f0f5ff';
-    weatherResult.style.border = '1px solid #ddd';
   });
 
-  // Initialize with default city
+
   citySelect.value = 'chisinau';
   const event = new Event('change');
   citySelect.dispatchEvent(event);
 
-  // Add simple animation to season cards
+
   const seasonCards = document.querySelectorAll('.season-card');
   seasonCards.forEach(card => {
-    card.addEventListener('mouseover', function() {
-      this.style.transform = 'translateY(-10px)';
+    card.addEventListener('mouseover', function () {
+      if (this.id !== currentSeason) {
+        this.style.transform = 'translateY(-10px)';
+        this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.15)';
+      }
     });
 
-    card.addEventListener('mouseout', function() {
+    card.addEventListener('mouseout', function () {
       if (this.id !== currentSeason) {
         this.style.transform = 'translateY(0)';
-      } else {
-        this.style.transform = 'scale(1.05)';
+        this.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.1)';
       }
     });
   });
