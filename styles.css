@@ -1,28 +1,37 @@
-/* General Styles */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  background-color: #f0f5ff;
+  background: linear-gradient(135deg, #f0f5ff 0%, #e0eaff 100%);
   color: #333;
   line-height: 1.6;
 }
 
-/* Header Styles */
+
 header {
   background: linear-gradient(135deg, #0057b8 0%, #ffd700 100%);
   color: white;
   text-align: center;
-  padding: 2rem 1rem;
-  margin-bottom: 2rem;
+  padding: 3rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-content {
+  max-width: 800px;
+  margin: 0 auto;
+  z-index: 2;
+  position: relative;
 }
 
 header h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
+  font-weight: 700;
   margin-bottom: 0.5rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -31,13 +40,14 @@ header p {
   font-size: 1.2rem;
   max-width: 600px;
   margin: 0 auto;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* Main Content */
+
 main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 2rem 1rem;
 }
 
 section {
@@ -48,12 +58,22 @@ h2 {
   text-align: center;
   margin-bottom: 2rem;
   color: #0057b8;
-  border-bottom: 2px solid #ffd700;
-  padding-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  position: relative;
 }
 
-/* Seasons Section */
-.seasons {
+h2::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 3px;
+  background: #ffd700;
+  margin: 0.5rem auto;
+}
+
+
+.season-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
@@ -61,63 +81,83 @@ h2 {
 
 .season-card {
   background-color: white;
-  border-radius: 10px;
+  border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .season-card:hover {
   transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-.season-card h3 {
-  padding: 1rem;
-  text-align: center;
-  background-color: #0057b8;
-  color: white;
-}
-
-.season-card img {
+.season-image {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
-.season-card p {
-  padding: 1rem;
-  font-size: 0.95rem;
+.season-info {
+  padding: 1.5rem;
+  text-align: center;
 }
 
-/* Weather Info Section */
+.season-info h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.season-info p {
+  font-size: 1rem;
+  color: #555;
+}
+
+
 .weather-info {
   background-color: white;
   padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-#weather-display {
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
 #city-select {
   margin: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.7rem 1.5rem;
   border: 2px solid #0057b8;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+#city-select:hover {
+  border-color: #ffd700;
 }
 
 #weather-result {
   margin-top: 1rem;
-  padding: 1rem;
-  border-radius: 5px;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
   min-height: 100px;
+  transition: background-color 0.3s ease;
 }
 
-/* Footer Styles */
+.weather-card {
+  text-align: center;
+}
+
+.weather-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+
 footer {
   text-align: center;
   padding: 1.5rem;
@@ -126,30 +166,17 @@ footer {
   margin-top: 2rem;
 }
 
-/* Responsive Design */
+footer p {
+  font-size: 0.9rem;
+}
+
+
 @media (max-width: 768px) {
   header h1 {
     font-size: 2rem;
   }
 
-  .seasons {
+  .season-grid {
     grid-template-columns: 1fr;
   }
-}
-
-/* Season-specific styles */
-#spring h3 {
-  background-color: #88c425;
-}
-
-#summer h3 {
-  background-color: #ff9505;
-}
-
-#autumn h3 {
-  background-color: #bd4f19;
-}
-
-#winter h3 {
-  background-color: #4a7c9b;
 }
