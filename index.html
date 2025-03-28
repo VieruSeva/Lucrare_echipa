@@ -8,36 +8,44 @@
 </head>
 <body>
   <header>
-    <h1>Weather in Moldova</h1>
-    <p>Explore the seasonal weather patterns of this beautiful Eastern European country</p>
+    <div class="header-content">
+      <h1>Weather in Moldova</h1>
+      <p>Explore the seasonal weather patterns of this beautiful Eastern European country</p>
+    </div>
   </header>
 
   <main>
     <section class="seasons">
       <h2>Seasons in Moldova</h2>
-
-      <div class="season-card" id="spring">
-        <h3>Spring</h3>
-        <img src="images/moldova-spring.jpg" alt="Spring in Moldova">
-        <p>Spring in Moldova (March-May) brings mild temperatures between 10-20°C and colorful blooming landscapes.</p>
-      </div>
-
-      <div class="season-card" id="summer">
-        <h3>Summer</h3>
-        <img src="images/moldova-summer.jpg" alt="Summer in Moldova">
-        <p>Summer (June-August) is warm and sunny with temperatures ranging from 25-30°C, perfect for exploring vineyards.</p>
-      </div>
-
-      <div class="season-card" id="autumn">
-        <h3>Autumn</h3>
-        <img src="images/moldova-autumn.jpg" alt="Autumn in Moldova">
-        <p>Autumn (September-November) features colorful foliage and temperatures between 10-20°C, ideal for harvest season.</p>
-      </div>
-
-      <div class="season-card" id="winter">
-        <h3>Winter</h3>
-        <img src="images/moldova-winter.jpg" alt="Winter in Moldova">
-        <p>Winter (December-February) brings snow and cold with temperatures ranging from -5 to 5°C.</p>
+      <div class="season-grid">
+        <div class="season-card" id="spring">
+          <img src="images/moldova-spring.jpg" alt="Spring in Moldova" class="season-image">
+          <div class="season-info">
+            <h3>Spring</h3>
+            <p>Mild temperatures (10-20°C) and blooming landscapes.</p>
+          </div>
+        </div>
+        <div class="season-card" id="summer">
+          <img src="images/moldova-summer.jpg" alt="Summer in Moldova" class="season-image">
+          <div class="season-info">
+            <h3>Summer</h3>
+            <p>Warm and sunny (25-30°C), perfect for vineyard tours.</p>
+          </div>
+        </div>
+        <div class="season-card" id="autumn">
+          <img src="images/moldova-autumn.jpg" alt="Autumn in Moldova" class="season-image">
+          <div class="season-info">
+            <h3>Autumn</h3>
+            <p>Colorful foliage and mild temperatures (10-20°C).</p>
+          </div>
+        </div>
+        <div class="season-card" id="winter">
+          <img src="images/moldova-winter.jpg" alt="Winter in Moldova" class="season-image">
+          <div class="season-info">
+            <h3>Winter</h3>
+            <p>Snowy and cold (-5 to 5°C).</p>
+          </div>
+        </div>
       </div>
     </section>
 
