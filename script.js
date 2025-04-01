@@ -1,30 +1,11 @@
-
 const weatherData = {
-  chisinau: {
-    spring: { temp: '15°C', conditions: 'Partly Cloudy', icon: '🌤️' },
-    summer: { temp: '28°C', conditions: 'Sunny', icon: '☀️' },
-    autumn: { temp: '17°C', conditions: 'Light Rain', icon: '🌦️' },
-    winter: { temp: '0°C', conditions: 'Snow Flurries', icon: '❄️' }
-  },
-  balti: {
-    spring: { temp: '14°C', conditions: 'Cloudy', icon: '☁️' },
-    summer: { temp: '27°C', conditions: 'Clear', icon: '☀️' },
-    autumn: { temp: '16°C', conditions: 'Foggy', icon: '🌫️' },
-    winter: { temp: '-2°C', conditions: 'Snow', icon: '❄️' }
-  },
-  tiraspol: {
-    spring: { temp: '16°C', conditions: 'Sunny', icon: '☀️' },
-    summer: { temp: '29°C', conditions: 'Hot', icon: '🔥' },
-    autumn: { temp: '18°C', conditions: 'Windy', icon: '💨' },
-    winter: { temp: '1°C', conditions: 'Light Snow', icon: '🌨️' }
-  },
-  cahul: {
-    spring: { temp: '17°C', conditions: 'Mild', icon: '🌤️' },
-    summer: { temp: '30°C', conditions: 'Very Hot', icon: '🔥' },
-    autumn: { temp: '19°C', conditions: 'Pleasant', icon: '😊' },
-    winter: { temp: '2°C', conditions: 'Cold', icon: '❄️' }
-  }
+  chisinau: { lat: 47.01, lon: 28.86 },
+  balti: { lat: 47.76, lon: 27.93 },
+  tiraspol: { lat: 46.84, lon: 29.64 },
+  cahul: { lat: 45.92, lon: 28.19 }
 };
+
+const API_KEY = '63a9e8c5334d9c0a0644cc370abc6d18'; 
 
 function getCurrentSeason() {
   const month = new Date().getMonth();
@@ -45,19 +26,17 @@ document.addEventListener('DOMContentLoaded', function () {
     currentSeasonCard.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.15)';
   }
 
-  citySelect.addEventListener('change', function () {
+  citySelect.addEventListener('change', async function () {
     const selectedCity = this.value;
-    const cityWeather = weatherData[selectedCity][currentSeason];
+    const { lat, lon } = weatherData[selectedCity];
 
-    weatherResult.innerHTML = `
-      <div class="weather-card">
-        <h3>${selectedCity.charAt(0).toUpperCase() + selectedCity.slice(1)}</h3>
-        <div class="weather-icon">${cityWeather.icon}</div>
-        <p>Temperature: ${cityWeather.temp}</p>
-        <p>Conditions: ${cityWeather.conditions}</p>
-        <p>Season: ${currentSeason.charAt(0).toUpperCase() + currentSeason.slice(1)}</p>
-      </div>
-    `;
+    try {
+      const weather = await fetchRealTimeWeather(lat, lon);
+      displayWeather(weather, selectedCity);
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+      weatherResult.innerHTML = '<p>Failed to load weather data. Please try again later.</p>';
+    }
   });
 
   citySelect.value = 'chisinau';
@@ -81,9 +60,41 @@ document.addEventListener('DOMContentLoaded', function () {
         this.style.transform = 'translateY(0)';
         this.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.1)';
       } else {
+ 
         this.style.transform = 'scale(1.05)';
         this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.15)';
       }
     });
   });
 });
+
+async function fetchRealTimeWeather(lat, lon) {
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`;
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(HTTP error! Status: ${response.status});
+  }
+
+  const data = await response.json();
+  return data;
+}
+
+function displayWeather(weather, city) {
+  const { temp, humidity } = weather.main;
+  const { description, icon } = weather.weather[0];
+  const windSpeed = weather.wind.speed;
+
+  const iconUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+
+  document.getElementById('weather-result').innerHTML = `
+    <div class="weather-card">
+      <h3>${city.charAt(0).toUpperCase() + city.slice(1)}</h3>
+      <img src="${iconUrl}" alt="${description}" class="weather-icon">
+      <p>Temperature: ${temp}°C</p>
+      <p>Conditions: ${description}</p>
+      <p>Humidity: ${humidity}%</p>
+      <p>Wind Speed: ${windSpeed} m/s</p>
+    </div>
+  `;
+}
