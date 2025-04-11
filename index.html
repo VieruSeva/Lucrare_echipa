@@ -1,73 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather in Moldova</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#e0eaff">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a202c">
+    <title>Atmospheric Weather Pro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-  <header>
-    <div class="header-content">
-      <h1>Weather in Moldova</h1>
-      <p>Explore the seasonal weather patterns of this beautiful Eastern European country</p>
-    </div>
-  </header>
+<body class="preload">
+    <div class="background-overlay"></div>
+    <div id="background-particles"></div>
 
-  <main>
-    <section class="seasons">
-      <h2>Seasons in Moldova</h2>
-      <div class="season-grid">
-        <div class="season-card" id="spring">
-          <img src="images/moldova-spring.jpg" alt="Spring in Moldova" class="season-image">
-          <div class="season-info">
-            <h3>Spring</h3>
-            <p>Mild temperatures (10-20°C) and blooming landscapes.</p>
-          </div>
+    <header>
+        <div class="header-content">
+            <h1>Atmospheric Weather Pro</h1>
+            <p>Real-time weather, forecasts, and immersive seasonal themes</p>
         </div>
-        <div class="season-card" id="summer">
-          <img src="images/moldova-summer.jpg" alt="Summer in Moldova" class="season-image">
-          <div class="season-info">
-            <h3>Summer</h3>
-            <p>Warm and sunny (25-30°C), perfect for vineyard tours.</p>
-          </div>
+        <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="theme-checkbox" aria-label="Toggle Light/Dark Theme">
+                <input type="checkbox" id="theme-checkbox" />
+                <div class="slider round">
+                     <span class="icon sun"><i class="fas fa-sun"></i></span>
+                     <span class="icon moon"><i class="fas fa-moon"></i></span>
+                </div>
+            </label>
         </div>
-        <div class="season-card" id="autumn">
-          <img src="images/moldova-autumn.jpg" alt="Autumn in Moldova" class="season-image">
-          <div class="season-info">
-            <h3>Autumn</h3>
-            <p>Colorful foliage and mild temperatures (10-20°C).</p>
-          </div>
-        </div>
-        <div class="season-card" id="winter">
-          <img src="images/moldova-winter.jpg" alt="Winter in Moldova" class="season-image">
-          <div class="season-info">
-            <h3>Winter</h3>
-            <p>Snowy and cold (-5 to 5°C).</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    </header>
 
-    <section class="weather-info">
-      <h2>Current Weather</h2>
-      <div id="weather-display">
-        <p>Select a city to see current weather information</p>
-        <select id="city-select">
-          <option value="chisinau">Chisinau</option>
-          <option value="balti">Balti</option>
-          <option value="tiraspol">Tiraspol</option>
-          <option value="cahul">Cahul</option>
-        </select>
-        <div id="weather-result"></div>
-      </div>
-    </section>
-  </main>
+    <main>
+        <section class="weather-search">
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <input type="text" id="city-input" placeholder="Enter city name..." autocomplete="off" aria-label="City Name Input">
+                    <div id="suggestions-box" class="suggestions-box"></div>
+                </div>
+                <button id="search-button" aria-label="Search Weather"><i class="fas fa-search"></i></button>
+            </div>
+            <div id="geolocation-button-container">
+                <button id="geolocation-button"><i class="fas fa-map-marker-alt"></i> Use My Location</button>
+            </div>
+        </section>
 
-  <footer>
-    <p>&copy; 2025 Weather in Moldova | Simple Weather Guide</p>
-  </footer>
+        <section class="weather-display-section">
+            <div id="loading-indicator" class="loading-indicator" style="display: none;">
+                <div class="spinner"></div>
+            </div>
+            <div id="weather-error" class="error-message" style="display: none;"></div>
 
-  <script src="script.js"></script>
+            <div id="weather-content-container" class="content-container">
+                <div id="current-weather-container" style="display: none;">
+                    <h2>Current Weather in <span id="current-city-name"></span></h2>
+                    <div class="current-weather-card">
+                        <div class="weather-main">
+                             <img id="current-weather-icon" class="weather-icon-main" src="" alt="Weather icon">
+                            <div class="temp-details">
+                                <p class="temperature"><span id="current-temp">--</span>°C</p>
+                                <p class="description" id="current-description">--</p>
+                                <p class="feels-like">Feels like: <span id="current-feels-like">--</span>°C</p>
+                            </div>
+                        </div>
+                        <div class="weather-details">
+                            <p><i class="fas fa-tint fa-fw" aria-hidden="true"></i> Humidity: <span id="current-humidity">--</span>%</p>
+                            <p><i class="fas fa-wind fa-fw" aria-hidden="true"></i> Wind: <span id="current-wind-speed">--</span> m/s <span id="current-wind-direction">(--)</span></p>
+                            <p><i class="fas fa-tachometer-alt fa-fw" aria-hidden="true"></i> Pressure: <span id="current-pressure">--</span> hPa</p>
+                            <p><i class="fas fa-sun fa-fw" aria-hidden="true"></i> Sunrise: <span id="current-sunrise">--</span></p>
+                            <p><i class="fas fa-moon fa-fw" aria-hidden="true"></i> Sunset: <span id="current-sunset">--</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="forecast-container" style="display: none;">
+                    <h2>5-Day Forecast</h2>
+                    <div class="forecast-grid" id="forecast-grid">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> Atmospheric Weather Pro | Powered by OpenWeatherMap</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
