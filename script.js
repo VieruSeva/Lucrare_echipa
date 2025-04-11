@@ -473,6 +473,6 @@ document.addEventListener('DOMContentLoaded', () => {
         body.classList.remove('preload');
     }, 100);
 
-    // Default weather load (Chișinău: 47.01, 28.86)
+   
     getWeatherByCoords(47.01, 28.86);
 });
